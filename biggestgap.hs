@@ -3,14 +3,14 @@ import Data.Maybe
 -- Finding biggest gap
 
 -- create a new type interval which is a tuple of integers
-type Interval = (Integer, Integer)
+-- type Interval = (Integer, Integer)
 
 -- Take merged sorted list and do the following below
 
 -- Takes 2 tuples x and y. In order to find the free time between them,
 -- subtract the start time of y with end time of x
 
-findFreeTime :: Interval -> Interval -> Integer
+findFreeTime :: (Integer, Integer) -> (Integer, Integer) -> Integer
 
 findFreeTime x y = (fst y) - (snd x)
 
@@ -42,7 +42,7 @@ findFreeTime x y = (fst y) - (snd x)
 -}
 
 -- get a list of all hours that are free
-listOfFreeTimes :: [Interval] -> [Integer]
+listOfFreeTimes :: [(Integer, Integer)] -> [Integer]
 -- if no schedule, you have all day (24 hours)
 listOfFreeTimes [] = [24]
 
@@ -72,7 +72,7 @@ listOfFreeTimes (a:b) = [findFreeTime (0,0) a,findFreeTime a (24,24)]
 -}
 
 -- Find the max value in a list of free times
-findMaxFreeTime :: [Interval] -> Integer
+findMaxFreeTime :: [(Integer, Integer)] -> Integer
 findMaxFreeTime [] = 24
 findMaxFreeTime x = maximum (listOfFreeTimes x)
 
@@ -94,7 +94,7 @@ findMaxFreeTime x = maximum (listOfFreeTimes x)
 -}
 
 --Takes in the intervals and returns the 2 tuples (x and y) that produces the MaxFreeTime
-findTuplesOfMaxValue :: [Interval] -> Interval
+findTuplesOfMaxValue :: [(Integer, Integer)] -> (Integer, Integer)
 findTuplesOfMaxValue [] = (0,24)
 findTuplesOfMaxValue x = (snd (y!!index), fst (y!!(index+1)))
  where y = [(0,0)] ++ x ++ [(24,24)]
