@@ -31,10 +31,12 @@ funcChooser option timeData
     | option == "1" = canAttendAll timeData
     | otherwise = "No such option available."
 
-canAttendAll _ = "True"
+canAttendAll [time] = "True"
 canAttendAll (time1:time2:timeData)
-    | (snd (time1)) > (fst (time2)) = "False"
+    | overlap time1 time2 = "False"
     | otherwise = canAttendAll (time2:timeData)
+
+overlap time1 time2 = (snd (time1)) > (fst (time2))
 
 strArrToTupleInt list = ((digitToInt (list!!0!!0)), (digitToInt (list!!1!!0)))
 
