@@ -23,7 +23,13 @@ optionPrinter = do
     putStrLn "2 : get biggest gap within intervals."
     putStrLn "3 : merge overlapping intervals."
     optionName <- getLine
+    let res = funcChooser optionName
+    print res
     putStrLn ("You have chosen option: "++optionName)
+
+funcChooser c
+    | c == "1" = "YESS"
+    | otherwise = "NOPE"
 
 strArrToTupleInt list = ((digitToInt (list!!0!!0)), (digitToInt (list!!1!!0)))
 
