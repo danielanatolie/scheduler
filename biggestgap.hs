@@ -11,72 +11,115 @@ type Interval = (Integer, Integer)
 -- subtract the start time of y with end time of x
 
 findFreeTime :: Interval -> Interval -> Integer
--- Base case is when you go to sleep MINUS end time of x
--- start time of y MINUS end time of x
+
 findFreeTime x y = (fst y) - (snd x)
+
+{-- TEST CASES
+	TEST1:
+	input: findFreeTime (5,10) (14,16)
+	output: 4
+
+	TEST2:
+	input: findFreeTime (5,9) (14,16)
+	output: 5
+
+	TEST3:
+	input: findFreeTime (0,0) (14,16)
+	output: 14
+
+	TEST4:
+	input: findFreeTime (5,10) (24,24)
+	output: 14
+
+	TEST5:
+	input: findFreeTime (0,5) (14,16)
+	output: 9
+
+	TEST6:
+	input: findFreeTime (0,0) (24,24)
+	output: 24
+
+-}
 
 -- get a list of all hours that are free
 listOfFreeTimes :: [Interval] -> [Integer]
--- if no schedule, you have all day from when you wake up and go to sleep
+-- if no schedule, you have all day (24 hours)
 listOfFreeTimes [] = [24]
+
 -- finds the hours of free times when a class ends and the next one starts
 listOfFreeTimes (a:b:c) = findFreeTime (0,0) a:findFreeTime a b: listOfFreeTimes2 (b:c)
  where
   listOfFreeTimes2 (a:b:c) = findFreeTime a b : listOfFreeTimes2 (b:c)
   listOfFreeTimes2 (a:b) = [findFreeTime a (24,24)]
   listOfFreeTimes2 lst = []
-listOfFreeTimes (a:b) = [findFreeTime a (24,24)]
+listOfFreeTimes (a:b) = [findFreeTime (0,0) a,findFreeTime a (24,24)]
 
---max::[Integer]->Integer
---max [a] = a
---max (a:b:c)
--- | a > b = max (a:c)
--- | otherwise = max (b:c)
+{--
+	TEST CASES:
+	TEST1:
+	input: listOfFreeTimes [(0,5),(10,14),(15,17)]
+	output: [0,5,1,7]
 
---findIndex :: (a -> Bool) -> [a] -> Int
--- findIndex x (h:t)
-
-
-
-findMaxFreeTime :: [Interval] -> [Interval]
-findMaxFreeTime [] = []
-findMaxFreeTime x  
- | length x == 1 = x
--- | length x == 2 = 
- | otherwise =
- -- find the index where we find the max free time from listoffreetimes
+	TEST2:
+	input: listOfFreeTimes [] 
+	output: [24]
 
 
--- gives the index of the max value in listoffreetimes on the originial merged and sorted input given
--- which we then take
- [x!!index]
- where
-  index = fromJust (findIndex (== (maximum (listOfFreeTimes x))) (listOfFreeTimes x))
+	TEST3:
+	input: listOfFreeTimes [(10,11)]
+	output: [10,13]
 
+-}
 
--- putStrLn $ "You have "++ (max (listOfFreeTimes x) ++ " hours between "++ (x endtime)++ " to " 
--- ++ (y starttime)
+-- Find the max value in a list of free times
+findMaxFreeTime :: [Interval] -> Integer
+findMaxFreeTime [] = 24
+findMaxFreeTime x = maximum (listOfFreeTimes x)
 
 {-- TEST CASES
 
-	Test Case 1:
-	input:
-		[(0,13),(15,24)]
-	output:
-		2
+	TEST1:
+	input: [(0,13),(15,24)]
+	output: 2
 
 
-	Test Case 2:
-	input:
-		[(0,14)]
-	output:
-		10
+	TEST2:
+	input: [(0,14)]
+	output: 10
 
-	Test Case 1:
-	input:
-		[(9,11),(15,18),(20,21)]
-	output:
-		9
+	TEST3:
+	input: [(9,11),(15,18),(20,21)]
+	output: 9
+
+-}
+
+--Takes in the intervals and returns the 2 tuples (x and y) that produces the MaxFreeTime
+findTuplesOfMaxValue :: [Interval] -> Interval
+findTuplesOfMaxValue [] = (0,24)
+findTuplesOfMaxValue x = (snd (y!!index), fst (y!!(index+1)))
+ where y = [(0,0)] ++ x ++ [(24,24)]
+       index = fromJust (findIndex (== (maximum (listOfFreeTimes x))) (listOfFreeTimes x))
+{--    | index == 0 = (0 , fst (x!!(index))
+    | index > 0 = (snd (x!!index-1), fst (x!!(index)))
+    | otherwise = (snd (x!!index-1), 24)
+    -}
+ -- where 
+-- gives the index of the max value in listoffreetimes on the original merged and sorted input given
+
+-- = (snd ((listOfFreeTimes x)!!index), fst ((listOfFreeTimes x)!!(index+1)))
+
+{-- TEST CASES
+
+	TEST1:
+	input: findTuplesOfMaxValue [(9,11),(15,18),(20,21)]
+	output: (0,9)
+
+	TEST2:
+	input: findTuplesOfMaxValue [(0,11),(15,18),(20,21)]
+	output: (11,15)
+-}
+--x= (snd (x!!index), fst (x!!(index+1)))
+-- putStrLn $ "You have "++ (maximum (listOfFreeTimes x) ++ " hours between "++ (fst x) ++ " to " 
+-- ++ (snd x)
 
 
---}
