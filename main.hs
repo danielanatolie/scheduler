@@ -15,7 +15,7 @@ main =
 
 welcomePrinter = do
     putStrLn "Welcome to scheduler!"
-    putStrLn "Please enter the name of your .csv file that contains time data"
+    putStrLn "Please enter the name of your .txt file that contains time data"
 
 optionPrinter timeData = do
     putStrLn "Please choose one of the following options:"
@@ -38,7 +38,7 @@ canAttendAll (time1:time2:timeData)
 
 overlap time1 time2 = (snd (time1)) > (fst (time2))
 
-strArrToTupleInt list = ((digitToInt (list!!0!!0)), (digitToInt (list!!1!!0)))
+strArrToTupleInt list = ((read (list!!0) :: Integer), (read (list!!1) :: Integer))
 
 splitsep sep [] = [[]]
 splitsep sep (h:t)
