@@ -11,25 +11,30 @@ main =
         contents <- hGetContents handle
         let timeData = map strArrToTupleInt ([splitsep (==',') line | line <- splitsep (=='\n') contents])
         print timeData
-        optionPrinter
+        optionPrinter timeData
 
 welcomePrinter = do
     putStrLn "Welcome to scheduler!"
     putStrLn "Please enter the name of your .csv file that contains time data"
 
-optionPrinter = do
+optionPrinter timeData = do
     putStrLn "Please choose one of the following options:"
     putStrLn "1 : can entity exist in all time intervals?"
     putStrLn "2 : get biggest gap within intervals."
     putStrLn "3 : merge overlapping intervals."
     optionName <- getLine
-    let res = funcChooser optionName
+    let res = funcChooser optionName timeData
     print res
     putStrLn ("You have chosen option: "++optionName)
 
-funcChooser c
-    | c == "1" = "YESS"
-    | otherwise = "NOPE"
+funcChooser option timeData
+    | option == "1" = canAttendAll timeData
+    | otherwise = "No such option available."
+
+canAttendAll _ = "True"
+canAttendAll (time1:time2:timeData)
+    | (snd (time1)) > (fst (time2)) = "False"
+    | otherwise = canAttendAll (time2:timeData)
 
 strArrToTupleInt list = ((digitToInt (list!!0!!0)), (digitToInt (list!!1!!0)))
 
