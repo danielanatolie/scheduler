@@ -1,15 +1,12 @@
 import Data.List
 import Data.Maybe
--- Finding biggest gap
 
--- create a new type interval which is a tuple of integers
--- type Interval = (Integer, Integer)
+-- Finding biggest gap (free time) in a list of start and end time tuples
 
 -- Take merged sorted list and do the following below
 
 -- Takes 2 tuples x and y. In order to find the free time between them,
 -- subtract the start time of y with end time of x
-
 findFreeTime :: (Integer, Integer) -> (Integer, Integer) -> Integer
 
 findFreeTime x y = (fst y) - (snd x)
@@ -45,7 +42,6 @@ findFreeTime x y = (fst y) - (snd x)
 listOfFreeTimes :: [(Integer, Integer)] -> [Integer]
 -- if no schedule, you have all day (24 hours)
 listOfFreeTimes [] = [24]
-
 -- finds the hours of free times when a class ends and the next one starts
 listOfFreeTimes (a:b:c) = findFreeTime (0,0) a:findFreeTime a b: listOfFreeTimes2 (b:c)
  where
@@ -79,16 +75,15 @@ findMaxFreeTime x = maximum (listOfFreeTimes x)
 {-- TEST CASES
 
 	TEST1:
-	input: [(0,13),(15,24)]
+	input: findMaxFreeTime [(0,13),(15,24)]
 	output: 2
 
-
 	TEST2:
-	input: [(0,14)]
+	input: findMaxFreeTime [(0,14)]
 	output: 10
 
 	TEST3:
-	input: [(9,11),(15,18),(20,21)]
+	input: findMaxFreeTime [(9,11),(15,18),(20,21)]
 	output: 9
 
 -}
@@ -99,14 +94,6 @@ findTuplesOfMaxValue [] = (0,24)
 findTuplesOfMaxValue x = (snd (y!!index), fst (y!!(index+1)))
  where y = [(0,0)] ++ x ++ [(24,24)]
        index = fromJust (findIndex (== (maximum (listOfFreeTimes x))) (listOfFreeTimes x))
-{--    | index == 0 = (0 , fst (x!!(index))
-    | index > 0 = (snd (x!!index-1), fst (x!!(index)))
-    | otherwise = (snd (x!!index-1), 24)
-    -}
- -- where 
--- gives the index of the max value in listoffreetimes on the original merged and sorted input given
-
--- = (snd ((listOfFreeTimes x)!!index), fst ((listOfFreeTimes x)!!(index+1)))
 
 {-- TEST CASES
 
@@ -118,8 +105,5 @@ findTuplesOfMaxValue x = (snd (y!!index), fst (y!!(index+1)))
 	input: findTuplesOfMaxValue [(0,11),(15,18),(20,21)]
 	output: (11,15)
 -}
---x= (snd (x!!index), fst (x!!(index+1)))
--- putStrLn $ "You have "++ (maximum (listOfFreeTimes x) ++ " hours between "++ (fst x) ++ " to " 
--- ++ (snd x)
 
 
