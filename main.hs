@@ -29,8 +29,9 @@ optionPrinter timeData = do
 
 funcChooser option timeData
     | option == "1" = canAttendAll timeData
-    | option == "3" = checkAndMergeIntervals timeData && writeOuputToFile timeData
+    | option == "3" = mergedList && writeOuputToFile timeData
     | otherwise = "No such option available."
+mergedList = checkAndMergeIntervals timeData
 
 canAttendAll [time] = "True"
 canAttendAll (time1:time2:timeData)
