@@ -108,13 +108,3 @@ findTuplesOfMaxValue x = (snd (y!!index), fst (y!!(index+1)))
 	input: findTuplesOfMaxValue [(0,11),(15,18),(20,21)]
 	output: (11,15)
 -}
-
-writeOutputToGapFile :: [(Integer, Integer)] -> IO ()
-writeOutputToGapFile input =
-    writeFile "biggestgap.txt" outputText
- where
-    inputText = input
-    funcOutput = findMaxFreeTime input
-    tuple1 = findTuplesOfMaxValue input
-    outputText = "Hello! Here are your results from using Biggest Gap: \n" ++ "input: " ++ (show inputText) ++ "\n"
-     ++ "output: " ++(show funcOutput)  ++" hours between " ++ (show (fst tuple1))++ " and "++(show (snd tuple1))++ "\n" ++ "Thanks for using Scheduler! \n"

@@ -55,17 +55,6 @@ checkAndMergeIntervals interval =
 -- checkAndMergeIntervals [(3,6), (1,3), (9,16)]; Expecting [(1,6), (9,16)]; Result is [(1,6), (9,16)]
 -- checkAndMergeIntervals [(3,6), (1,3), (5,16)]; Expecting [(1,16)]; Result is [(1,16)]
 -- checkAndMergeIntervals [(6,10), (7,9), (4,5), (1,4), (7,9)]; Expecting [(1,5), (6,10)]; Result is [(1,5), (6,10)]
-    
--- Function that takes the original list of tuples, applies the checkAndMergeIntervals function to get the final sorted and merged tuple list
--- and then writes to output file a message that outlines thier orginal input vs final output 
-writeOuputToFile :: [(Integer, Integer)] -> IO ()
-writeOuputToFile input = 
-    writeFile "mergeOutput.txt" outputText
- where 
-    inputText = input
-    funcOutput = checkAndMergeIntervals input 
-    outputText = "Hello! Here are your results from using Merge Intervals: \n" ++ "input: " ++ (show inputText) ++ "\n" 
-     ++ "output: " ++ (show funcOutput) ++ "\n" ++ "Thanks for using Scheduler! \n" 
      
 -- writeOuputToFile [(3,6), (1,3), (9,16)]; Expecting correct message with output = [(1,6), (9,16)]; Result is correct message within file
 -- writeOuputToFile [(7,9), (3,5), (7,9)]; Expecting correct message with output = [(3,5),(7,9)]; Result is correct message within file 
