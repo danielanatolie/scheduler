@@ -58,7 +58,7 @@ checkAndMergeIntervals interval =
     
 -- Function that takes the original list of tuples, applies the checkAndMergeIntervals function to get the final sorted and merged tuple list
 -- and then writes to output file a message that outlines thier orginal input vs final output 
-writeOuputToFile :: [(Int, Int)] -> IO ()
+writeOuputToFile :: [(Integer, Integer)] -> IO ()
 writeOuputToFile input = 
     writeFile "mergeOutput.txt" outputText
  where 
