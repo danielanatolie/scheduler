@@ -60,7 +60,7 @@ checkAndMergeIntervals interval =
 -- and then writes to output file a message that outlines thier orginal input vs final output 
 writeOuputToFile :: [(Integer, Integer)] -> IO ()
 writeOuputToFile input = 
-    writeFile "mergeOutput1.txt" outputText
+    writeFile "mergeOutput.txt" outputText
  where 
     inputText = input
     funcOutput = checkAndMergeIntervals input 
