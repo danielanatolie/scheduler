@@ -1,6 +1,8 @@
 import System.IO
 import Data.Typeable
 import Data.Char
+import MergeIntervals
+import BiggestGap
 
 main =
     do
@@ -29,9 +31,10 @@ optionPrinter timeData = do
 
 funcChooser option timeData
     | option == "1" = canAttendAll timeData
+    | option == "2" = findTuplesOfMaxValue mergedList && writeOutputToGapFile timeData
     | option == "3" = mergedList && writeOuputToFile timeData
     | otherwise = "No such option available."
-mergedList = checkAndMergeIntervals timeData
+      where mergedList = checkAndMergeIntervals timeData
 
 canAttendAll [time] = "True"
 canAttendAll (time1:time2:timeData)
