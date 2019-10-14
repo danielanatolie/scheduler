@@ -44,6 +44,6 @@ writeOuputToFile input =
         "Hello! " ++ "\n" ++ "Here are your results: \n" 
         ++ "Original Data: " ++ (show inputText) ++ "\n" 
         ++ "Free Time: " ++(show maxFreeTime)  ++" hours between " ++ (show (fst maxFreeTimeTuples))++ " and "++(show (snd maxFreeTimeTuples))++ "\n"
-        ++ "Conlficts: " ++ conflicts ++ "\n"
+        ++ "Conflicts: " ++ conflicts ++ "\n"
         ++ "Merged Interval Schedule: " ++ (show mergedTime) ++ "\n" 
         ++ "Thank you for using Scheduler! \n" 
