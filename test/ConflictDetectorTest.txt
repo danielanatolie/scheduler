@@ -1,0 +1,20 @@
+conflictExists
+    TEST1:
+    input: [(1,2),(1,3)]
+    output: "A conflict occurs between (1,2) and (1,3)."
+    
+    TEST2:
+    input: [(1,2),(1,3),(1,5),(5,7)]
+    output: "A conflict occurs between (1,2) and (1,3)."
+
+    TEST3:
+    input: [(0,0)]
+    output: "No conflicts detected."
+
+    TEST4: 
+    input: [(1,2),(2,3)]
+    output: "No conflicts detected."
+
+    TEST5:
+    input: [(1,2),(2,3),(3,5),(5,24)]
+    output: "No conflicts detected."

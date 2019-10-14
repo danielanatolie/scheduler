@@ -1,0 +1,64 @@
+findFreeTime
+	TEST1:
+	input: findFreeTime (5,10) (14,16)
+	output: 4
+
+	TEST2:
+	input: findFreeTime (5,9) (14,16)
+	output: 5
+
+	TEST3:
+	input: findFreeTime (0,0) (14,16)
+	output: 14
+
+	TEST4:
+	input: findFreeTime (5,10) (24,24)
+	output: 14
+
+	TEST5:
+	input: findFreeTime (0,5) (14,16)
+	output: 9
+
+	TEST6:
+	input: findFreeTime (0,0) (24,24)
+	output: 24
+
+
+
+listOfFreeTimes
+    TEST1:
+	input: listOfFreeTimes [(0,5),(10,14),(15,17)]
+	output: [0,5,1,7]
+
+	TEST2:
+	input: listOfFreeTimes [] 
+	output: [24]
+
+	TEST3:
+	input: listOfFreeTimes [(10,11)]
+	output: [10,13]
+
+
+
+findMaxFreeTime
+    TEST1:
+	input: findMaxFreeTime [(0,13),(15,24)]
+	output: 2
+
+	TEST2:
+	input: findMaxFreeTime [(0,14)]
+	output: 10
+
+	TEST3:
+	input: findMaxFreeTime [(9,11),(15,18),(20,21)]
+	output: 9
+
+
+findTuplesOfMaxValue
+    TEST1:
+	input: findTuplesOfMaxValue [(9,11),(15,18),(20,21)]
+	output: (0,9)
+
+	TEST2:
+	input: findTuplesOfMaxValue [(0,11),(15,18),(20,21)]
+	output: (11,15)

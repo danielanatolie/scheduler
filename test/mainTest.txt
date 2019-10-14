@@ -1,0 +1,15 @@
+input from day1.txt:
+1,2
+3,5
+5,11
+11,15
+13,17
+
+output from output.txt
+Hello! 
+Here are your results: 
+Original Data: [(1,2),(3,5),(5,11),(11,15),(13,17)]
+Free Time: 7 hours between 17 and 24
+Conflicts: A conflict occurs between (11,15) and (13,17).
+Merged Interval Schedule: [(1,2),(3,17)]
+Thank you for using Scheduler! 
