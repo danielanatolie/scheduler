@@ -14,7 +14,7 @@ main =
         handle <- openFile (fileName) ReadMode
         contents <- hGetContents handle
         let timeData = map strArrToTupleInt ([splitsep (==',') line | line <- splitsep (=='\n') contents])
-        printOutput timeData
+        printOutput (sortIntervals timeData)
 
 --Prints welcome message
 welcomePrinter :: IO ()
