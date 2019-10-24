@@ -18,7 +18,7 @@ ghci
 
 Before running main, please ensure you have a .txt file that is ready to be processed. Each row of the test file should follow the following format
 ```
-START_TMIE, END_TIME
+START_TIME, END_TIME
 ```
 Each .txt file represents a 24 hour day in which the times are restricted to natural numbers between 0 and 24. 
 After your file is ready, run: 
